@@ -22,12 +22,16 @@ function Product({ result }: InferGetStaticPropsType<typeof getStaticProps>) {
   console.log(typeof result);
   
 
-    return (
-        <div>
+  return
+  {
+    data?(
+      <div>        
             <div>{ data.name } </div> 
             <div>{data.price}</div>    
         </div>
-    )
+      
+    ): null
+  }
 }
 
 
@@ -41,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     {params: { id: product.id.toString() }}
   ))
 
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 
@@ -52,7 +56,9 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 
   const res = await fetch(`${process.env.API_URL}`)
   const product: product[] = await res.json()
-  var result = product.find((p : product) => p.id.toString() === id)
+  var result = product.find((p: product) => p.id.toString() === id)
+  console.log("...");
+  
 
   return { props: { result } }
 }
