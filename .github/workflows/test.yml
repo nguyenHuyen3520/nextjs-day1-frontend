@@ -1,0 +1,23 @@
+name: Testing
+on: [push]
+jobs:
+  e2e-chrome:
+    runs-on: ubuntu-latest
+    # let's make sure our tests pass on Chrome browser
+    name: E2E on Chrome
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+          command: |
+            npm run e2e:headless
+      - uses: actions/upload-artifact@v2
+        with:
+          name: screenshots-in-headless-chrome
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        with:
+          name: video-in-headless-chrome
+          path: cypress/videos

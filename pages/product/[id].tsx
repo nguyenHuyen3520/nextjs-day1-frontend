@@ -1,5 +1,5 @@
 import { InferGetStaticPropsType, GetStaticPaths, GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
+import router, { useRouter } from 'next/router'
 import {
    ParsedUrlQuery
 } from 'querystring'
@@ -22,16 +22,19 @@ function Product({ result }: InferGetStaticPropsType<typeof getStaticProps>) {
   console.log(typeof result);
   
 
-  return
-  {
-    data?(
-      <div>        
-            <div>{ data.name } </div> 
-            <div>{data.price}</div>    
-        </div>
-      
-    ): null
-  }
+  return(
+    <div>
+      {
+        data?(
+          <div>        
+                <div>{ data.name } </div> 
+                <div>{data.price}</div>    
+            </div>
+          
+        ): router.push('/404')
+      }
+    </div>
+  )
 }
 
 
