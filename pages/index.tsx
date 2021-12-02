@@ -6,7 +6,9 @@ import Link from 'next/link'
 
 const Home: NextPage = () => {
   return (
-    <div>day la trang chu 22:47</div>
+    <div>
+      <h1 id="HonePage">Day la trang chu</h1>
+    </div>
   )
 }
 

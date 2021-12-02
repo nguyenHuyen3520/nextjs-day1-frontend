@@ -22,6 +22,7 @@ function Product({ products }: InferGetStaticPropsType<typeof getStaticProps>) {
 
   return (
     <div>
+      <h1 id="ProductPage">Day la trang Product</h1>
       <ul>
         {
           products.map((item, index) => (
